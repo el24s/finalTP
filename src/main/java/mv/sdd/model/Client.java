@@ -2,6 +2,8 @@ package mv.sdd.model;
 
 import java.util.Objects;
 
+import static mv.sdd.model.EtatClient.PARTI_FACHE;
+
 public class Client {
     private final int id;
     private final String nom;
@@ -29,6 +31,10 @@ public class Client {
     }
 
     public void diminuerPatience(int minutes) {
+        patience -= minutes;
+        if (patience <= 0) {
+            etat = EtatClient.PARTI_FACHE;
+        }
         // TODO: diminuer patience et passer à PARTI_FACHE si <= 0
     }
 

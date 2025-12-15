@@ -1,5 +1,7 @@
 package mv.sdd.model;
 
+import java.util.HashMap;
+
 public class Commande {
     private int id;
     private static int nbCmd = 0;
@@ -7,7 +9,9 @@ public class Commande {
     private EtatCommande etat = EtatCommande.EN_ATTENTE;
     private int tempsRestant; // en minutes simulées
     // TODO : ajouter l'attribut plats et son getter avec le bon type et le choix de la SdD adéquat
-    // private final <Votre structure de choix adéquat> plats
+    private final HashMap<EtatCommande, String> plats() {
+        return;
+    }
 
     // TODO : Ajout du ou des constructeur(s) nécessaires ou compléter au besoin
     public Commande(Client client, MenuPlat plat) {
@@ -37,6 +41,13 @@ public class Commande {
     }
 
     // TODO : Ajoutez la méthode ajouterPlat
+    public void ajouterPlat(HashMap<EtatCommande, String> plat) {
+        if(plat.isEmpty()) {
+           return;
+        }
+
+
+    }
 
     // TODO : Ajoutez la méthode demarrerPreparation
 
