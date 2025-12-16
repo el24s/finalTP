@@ -2,6 +2,8 @@ package mv.sdd.model;
 
 import mv.sdd.utils.Constantes;
 
+import java.awt.*;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Stats {
@@ -12,7 +14,7 @@ public class Stats {
     private double chiffreAffaires = 0;
     // TODO : remplacer Object par le bon type et initilaliser l'attribut avec la bonne valeur
     //  et ajuster les getters et les setters
-    private Object ventesParPlat = null;
+    private HashMap<MenuPlat, > ventesParPlat = null;
 
     // TODO: au besoin ajuster le constructeur et/ou ajouter d'autres
     public Stats(Horloge horloge) {

@@ -35,7 +35,7 @@ public class Client {
         if (patience <= 0) {
             etat = EtatClient.PARTI_FACHE;
         }
-        // TODO: diminuer patience et passer à PARTI_FACHE si <= 0
+        // diminuer patience et passer à PARTI_FACHE si <= 0 DONE
     }
 
     public EtatClient getEtat() {
