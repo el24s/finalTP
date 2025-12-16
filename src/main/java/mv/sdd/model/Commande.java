@@ -1,6 +1,5 @@
 package mv.sdd.model;
 
-import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,15 +9,14 @@ public class Commande {
     private final Client client;
     private EtatCommande etat = EtatCommande.EN_ATTENTE;
     private int tempsRestant; // en minutes simulées
-
-    // TODO : ajouter l'attribut plats et son getter avec le bon type et le choix de la SdD adéquat
-    private Map<MenuPlat, Plat> plats = new HashMap<>();
+    // ajouter l'attribut catalogue et son getter avec le bon type et le choix de la SdD adéquat DONE
+    private Map<MenuPlat, Plat> catalogue = new HashMap<>();
 
     // TODO : Ajout du ou des constructeur(s) nécessaires ou compléter au besoin
-    public Commande(Client client, MenuPlat plat) {
+    public Commande(Client client, MenuPlat plat, Map<MenuPlat, Plat> catalogue) {
         id = ++nbCmd;
         this.client = client;
-        // À compléter
+        this.catalogue = catalogue;
     }
 
     public int getId() {
@@ -41,36 +39,55 @@ public class Commande {
         this.etat = etat;
     }
 
-    // TODO : Ajoutez la méthode ajouterPlat
-    public void ajouterPlat(Map<MenuPlat, String> plat) {
-        if(plat.isEmpty()) {
+    public Map<MenuPlat, Plat> getCatalogue() {
+        return catalogue;
+    }
+
+    // Ajoutez la méthode ajouterPlat DONE
+    public void ajouterPlat(Plat plat) {
+        if(plat == null) {
            return;
         }
-        plats.put(plat.get(0), plat.get(1));
+        catalogue.put(plat.getCode(), plat);
     }
 
-    // TODO : Ajoutez la méthode demarrerPreparation
+    // Ajoutez la méthode demarrerPreparation
     public void demarrerPreparation() {
+        etat = EtatCommande.EN_PREPARATION;
+        tempsRestant = calculerTempsPreparationTotal();
 
     }
 
-    // TODO : Ajoutez la méthode decrementerTempsRestant
-    public int decrementerTempsRestant() {
-        return tempsRestant = 0;
+    // Ajoutez la méthode decrementerTempsRestant DONE
+    public void decrementerTempsRestant() {
+        tempsRestant -= 1;
     }
 
-    // TODO : Ajoutez la méthode estTermineeParTemps
+    // Ajoutez la méthode estTermineeParTemps DONE
     public boolean estTermineeParTemps() {
-        return false;
+        if (tempsRestant == 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    // TODO : Ajoutez la méthode calculerTempsPreparationTotal
-    public void calculerTempsPreparationTotal() {
-
+    // Ajoutez la méthode calculerTempsPreparationTotal DONE
+    public int calculerTempsPreparationTotal() {
+        int tempsTotal = 0;
+        for (Plat plat : catalogue.values()) {
+            tempsTotal += plat.getTempsPreparation();
+        }
+        return tempsTotal;
     }
 
-    // TODO : Ajoutez la méthode calculerMontant
-    public void calculerMontant() {
+    // Ajoutez la méthode calculerMontant DONE
+    public double calculerMontant() {
+        double montantTotal = 0;
 
+        for (Plat plat : catalogue.values()) {
+            montantTotal += plat.getPrix();
+        }
+        return montantTotal;
     }
 }
