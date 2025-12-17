@@ -12,11 +12,11 @@ public class Commande {
     // ajouter l'attribut catalogue et son getter avec le bon type et le choix de la SdD adéquat DONE
     private Map<MenuPlat, Plat> catalogue = new HashMap<>();
 
-    // TODO : Ajout du ou des constructeur(s) nécessaires ou compléter au besoin
+    // Ajout du ou des constructeur(s) nécessaires ou compléter au besoin
     public Commande(Client client, MenuPlat plat, Map<MenuPlat, Plat> catalogue) {
         id = ++nbCmd;
         this.client = client;
-        this.catalogue = catalogue;
+        this.catalogue = new HashMap<>();
     }
 
     public int getId() {
@@ -65,11 +65,7 @@ public class Commande {
 
     // Ajoutez la méthode estTermineeParTemps DONE
     public boolean estTermineeParTemps() {
-        if (tempsRestant == 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return tempsRestant == 0;
     }
 
     // Ajoutez la méthode calculerTempsPreparationTotal DONE
